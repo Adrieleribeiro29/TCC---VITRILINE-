@@ -64,8 +64,8 @@ const produtos = [
   // { id: 53, nome: "Saia Wrap Floral",             categoria: "Saias",     preco: 40.00, precoStr: "R$ 40,00",  tamanho: "Único",      img: "images/produto_53.jpg", desc: "Saia wrap (envelope) com estampa floral colorida, amarração lateral ajustável e comprimento midi. Caimento perfeito para todos os biotipos — versátil e feminina." },
 
   // --- NOVIDADES ---
-  { id: 57, nome: "Mochila tira colo Preta",         categoria: "Vestidos",  preco: 15.90, precoStr: "R$ 15,90",  tamanho: "ajustável",          img: "images/produto_72.jpg", desc: "com entrada USB | alça ajustável." },
-  { id: 58, nome: "Cinto feminino",        categoria: "Vestidos",  preco: 10.00, precoStr: "R$ 10,00",  tamanho: "G",          img: "images/produto_36.jpg", desc: "Animal print." },
+  { id: 57, nome: "Mochila tira colo Preta",         categoria: "Novidades",  preco: 15.90, precoStr: "R$ 15,90",  tamanho: "ajustável",          img: "images/produto_72.jpg", desc: "com entrada USB | alça ajustável." },
+  { id: 58, nome: "Cinto feminino",        categoria: "Novidades",  preco: 10.00, precoStr: "R$ 10,00",  tamanho: "G",          img: "images/produto_36.jpg", desc: "Animal print." },
   // { id: 59, nome: "Vestido de Festa",             categoria: "Vestidos",  preco: 90.00, precoStr: "R$ 90,00",  tamanho: "P",          img: "images/produto_59.jpg", desc: "Vestido de festa em tecido encorpado com acabamento refinado e caimento elegante. Perfeito para formaturas, casamentos e eventos especiais — uma peça única de brechó." },
   // { id: 60, nome: "Macacão Jeans",                categoria: "Vestidos",  preco: 80.00, precoStr: "R$ 80,00",  tamanho: "M",          img: "images/produto_60.jpg", desc: "Macacão jeans em lavagem média com alças ajustáveis e botões frontais. Peça moderna e coringa que funciona com tênis, sapatilha ou sandália." },
   // { id: 61, nome: "Vestido Xadrez Mini",          categoria: "Vestidos",  preco: 55.00, precoStr: "R$ 55,00",  tamanho: "P",          img: "images/produto_61.jpg", desc: "Vestido mini com estampa xadrez em tecido levinho, manga longa e gola V. Estilo vintage revivido — combine com meia calça e bota para um look outono perfeito." },
@@ -92,11 +92,9 @@ const produtos = [
   // { id: 80, nome: "Colete Tricot",                categoria: "Agasalhos", preco: 52.00, precoStr: "R$ 52,00",  tamanho: "P/M",        img: "images/produto_80.jpg", desc: "Colete de tricot sem mangas com costela fina e decote V, em tom neutro e atemporal. Prático para sobrepor a camisetas e blusas — estilo e calor na medida certa." },
 ];
 
-const categorias = ["Todos", "Calçados", "Blusas", "Calças", "Saias", "Vestidos", "Agasalhos"];
+const categorias = ["Todos", "Calçados", "Blusas", "Calças", "Saias", "Novidades", "Agasalhos"];
 
-// ============================================
 // CARRINHO
-// ============================================
 let carrinho = JSON.parse(localStorage.getItem('elis_carrinho') || '[]');
 
 function salvarCarrinho() {
@@ -189,9 +187,7 @@ function fecharCarrinho() {
   document.body.style.overflow = '';
 }
 
-// ============================================
 // AUTENTICAÇÃO
-// ============================================
 let usuarioLogado = JSON.parse(localStorage.getItem('elis_usuario') || 'null');
 
 function login(nome, email, senha) {
@@ -260,9 +256,7 @@ function trocarAba(aba) {
   document.getElementById(`form-${aba}`).style.display = 'flex';
 }
 
-// ============================================
 // CHECKOUT
-// ============================================
 let metodoPagamento = 'pix';
 
 function abrirCheckout() {
@@ -327,9 +321,8 @@ function finalizarPedido() {
   mostrarToast('🎉 Pedido enviado! Redirecionando para o WhatsApp...');
 }
 
-// ============================================
 // MODAL PRODUTO
-// ============================================
+
 function criarModal() {
   if (document.getElementById('produto-modal')) return;
   const overlay = document.createElement('div');
@@ -379,9 +372,8 @@ function fecharModal() {
   if (m) { m.classList.remove('active'); document.body.style.overflow = ''; }
 }
 
-// ============================================
 // CARD DE PRODUTO
-// ============================================
+
 function criarCardProduto(prod) {
   const div = document.createElement('div');
   div.className = 'produto-card';
@@ -402,18 +394,16 @@ function criarCardProduto(prod) {
   return div;
 }
 
-// ============================================
 // DESTAQUE (index)
-// ============================================
+
 function initDestaque() {
   const grid = document.getElementById('grid-destaque');
   if (!grid) return;
   produtos.slice(0, 8).forEach(prod => grid.appendChild(criarCardProduto(prod)));
 }
 
-// ============================================
 // CATÁLOGO — com filtro, busca, ordenação e contagem
-// ============================================
+
 let categoriaAtiva = 'Todos';
 let termoBusca = '';
 let ordemAtiva = 'padrao';
@@ -499,9 +489,8 @@ function renderizarCatalogo() {
   }
 }
 
-// ============================================
 // NAVBAR + HAMBURGER
-// ============================================
+
 function initNavbar() {
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
